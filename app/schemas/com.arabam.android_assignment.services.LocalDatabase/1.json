@@ -1,0 +1,136 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "c3091bdefbc88e777065657e5ddb214c",
+    "entities": [
+      {
+        "tableName": "Advert",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`listOrder` INTEGER, `id` INTEGER, `title` TEXT, `modelName` TEXT, `price` INTEGER, `priceFormatted` TEXT, `date` TEXT, `dateFormatted` TEXT, `photo` TEXT, `text` TEXT, `cityName` TEXT, `townName` TEXT, `categoryId` INTEGER, `name` TEXT, `uid` INTEGER, `nameSurname` TEXT, `phone` TEXT, `phoneFormatted` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "listOrder",
+            "columnName": "listOrder",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "advertID",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "modelName",
+            "columnName": "modelName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "priceFormatted",
+            "columnName": "priceFormatted",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dateFormatted",
+            "columnName": "dateFormatted",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "photo",
+            "columnName": "photo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "location.cityName",
+            "columnName": "cityName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "location.townName",
+            "columnName": "townName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "category.categoryId",
+            "columnName": "categoryId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "category.name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "userInfo.uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "userInfo.nameSurname",
+            "columnName": "nameSurname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "userInfo.phone",
+            "columnName": "phone",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "userInfo.phoneFormatted",
+            "columnName": "phoneFormatted",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c3091bdefbc88e777065657e5ddb214c')"
+    ]
+  }
+}
