@@ -4,9 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.arabam.android_assignment.models.Advert
+import com.arabam.android_assignment.models.AdvertDetails
+import com.arabam.android_assignment.models.MyConverter
 
-@Database(entities = [Advert::class], version = 1)
+@Database(entities = [Advert::class, AdvertDetails::class], version = 1)
+@TypeConverters(MyConverter::class)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun roomDao(): RoomDao
 

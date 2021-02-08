@@ -1,6 +1,7 @@
 package com.arabam.android_assignment.services.retrofit
 
 import com.arabam.android_assignment.models.Advert
+import com.arabam.android_assignment.models.AdvertDetails
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -19,7 +20,7 @@ class ApiService {
         return api.getAdverts(sort.toString(),sortDirection.toString(),take.toString())
     }
 
-    fun getAdvertDetails(id:Int?): Single<Advert> {
+    fun getAdvertDetails(id:Int): Single<AdvertDetails> {
         return api.getAdvertDetails(id)
     }
 }

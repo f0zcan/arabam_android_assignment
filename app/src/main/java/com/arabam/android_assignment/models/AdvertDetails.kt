@@ -1,13 +1,17 @@
 package com.arabam.android_assignment.models
 
-
-import androidx.room.*
+import android.os.Build
+import android.text.Html
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import kotlin.collections.ArrayList
 
 @Entity
-data class Advert(
+data class AdvertDetails(
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     @ColumnInfo(name = "id")
     var advertID: Int?,
@@ -21,15 +25,24 @@ data class Advert(
     var priceFormatted: String?,
     var date: String?,
     var dateFormatted: String?,
-    var photo: String?,
+    @Embedded
+    var photos: ArrayList<String>?,
     var properties: ArrayList<Property>?,
+    var text: String?,
+    @Embedded
+    var userInfo: User?,
 ) : Serializable {
-    @PrimaryKey(autoGenerate = true)
-    var uuid: Int? = 0
 
-    fun photoUrl(): String? {
-        return this.photo?.replace("{0}", "800x600").toString()
+
+    @Suppress("DEPRECATION")
+    fun getContent(): Any {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(this.text, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            Html.fromHtml(this.text)
+        }
     }
+
 
     fun getKM(): String {
         return this.getProperty("km")
@@ -37,6 +50,14 @@ data class Advert(
 
     fun getYear(): String {
         return this.getProperty("year")
+    }
+
+    fun getGear(): String {
+        return this.getProperty("gear")
+    }
+
+    fun getFuel(): String {
+        return this.getProperty("fuel")
     }
 
 
@@ -53,5 +74,3 @@ data class Advert(
 
 
 }
-
-

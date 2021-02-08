@@ -3,6 +3,7 @@ package com.arabam.android_assignment.viewmodels
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.arabam.android_assignment.models.Advert
+import com.arabam.android_assignment.models.AdvertDetails
 import com.arabam.android_assignment.services.LocalDatabase
 import com.arabam.android_assignment.services.retrofit.ApiService
 import com.arabam.android_assignment.views.BaseViewModel
@@ -17,7 +18,7 @@ class DetailsViewModel(application: Application) : BaseViewModel(application) {
     private val disposable = CompositeDisposable()
 
 
-    val advert = MutableLiveData<Advert>()
+    val advert = MutableLiveData<AdvertDetails>()
     val advertError = MutableLiveData<Boolean>()
     val advertLoading = MutableLiveData<Boolean>()
 
@@ -25,10 +26,10 @@ class DetailsViewModel(application: Application) : BaseViewModel(application) {
         getDataFromAPI(id)
     }
 
-    private fun getDataFromLocal(id: Int?): Advert? {
+    private fun getDataFromLocal(id: Int?): AdvertDetails? {
         launch {
             val dao = LocalDatabase(getApplication()).roomDao()
-            val advertDetails = dao.getAdvertDetails(id)
+            val advertDetails = dao.getAdvertDetails(id ?: 0)
             advert.value = advertDetails
         }
         return advert.value
@@ -37,10 +38,10 @@ class DetailsViewModel(application: Application) : BaseViewModel(application) {
     private fun getDataFromAPI(id: Int?) {
         advertLoading.value = true
         disposable.add(
-            apiService.getAdvertDetails(id).subscribeOn(Schedulers.newThread())
+            apiService.getAdvertDetails(id ?: 0).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<Advert>() {
-                    override fun onSuccess(t: Advert) {
+                .subscribeWith(object : DisposableSingleObserver<AdvertDetails>() {
+                    override fun onSuccess(t: AdvertDetails) {
                         advert.value = t
                         advertError.value = false
                         advertLoading.value = false

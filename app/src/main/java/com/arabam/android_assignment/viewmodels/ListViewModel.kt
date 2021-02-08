@@ -70,7 +70,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
             var listLong = dao.insertAll(*list.toTypedArray())
 
             for (i in list.indices) {
-                list[i].listOrder = listLong[i].toInt()
+                list[i].uuid = listLong[i].toInt()
             }
             updateList(list)
         }
