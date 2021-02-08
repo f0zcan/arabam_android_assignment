@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -70,12 +71,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:drawableLeft="@drawable/place_icon"
+                        android:drawablePadding="@dimen/text_margin"
+                        android:gravity="center"
                         android:paddingHorizontal="4dp"
                         android:paddingVertical="2dp"
                         android:text="@{advert.location.toString()}"
-                        android:textAlignment="viewStart"
+                        android:textAlignment="textStart"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="RtlCompat" />
 
                     <TextView
                         android:id="@+id/dateView"
@@ -83,12 +87,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:drawableRight="@drawable/calendar_icon"
+                        android:drawablePadding="@dimen/text_margin"
+                        android:gravity="center"
                         android:paddingHorizontal="4dp"
                         android:paddingVertical="2dp"
                         android:text="@{advert.dateFormatted}"
                         android:textAlignment="viewEnd"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="RtlCompat" />
 
 
                 </LinearLayout>
