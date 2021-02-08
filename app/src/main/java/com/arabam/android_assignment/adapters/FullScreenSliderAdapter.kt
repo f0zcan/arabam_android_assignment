@@ -5,21 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
-import com.arabam.android_assignment.databinding.ImageViewBinding
+import com.arabam.android_assignment.databinding.FullscreenSliderImageBinding
 
-class SliderAdapter(private val mContext: Context?, private val itemList: ArrayList<String>?) :
+class FullScreenSliderAdapter(private val mContext: Context?, private val itemList: ArrayList<String>?) :
     PagerAdapter() {
     private var layoutInflater: LayoutInflater? = null
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         layoutInflater = LayoutInflater.from(container.context)
-        val binding = ImageViewBinding.inflate(layoutInflater!!, container, false)
+        val binding = FullscreenSliderImageBinding.inflate(layoutInflater!!, container, false)
         binding.imageUrl = itemList?.get(position)?.replace("{0}", "800x600") ?: ""
-        try {
-            container.addView(binding.root, position)
-        } catch (e: IndexOutOfBoundsException) {
-            e.printStackTrace()
-        }
+        container.addView(binding.root, position)
         return binding.root
     }
 
