@@ -2,15 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c3091bdefbc88e777065657e5ddb214c",
+    "identityHash": "7f213e572941f1164b71fe0f97198f8b",
     "entities": [
       {
         "tableName": "Advert",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`listOrder` INTEGER, `id` INTEGER, `title` TEXT, `modelName` TEXT, `price` INTEGER, `priceFormatted` TEXT, `date` TEXT, `dateFormatted` TEXT, `photo` TEXT, `text` TEXT, `cityName` TEXT, `townName` TEXT, `categoryId` INTEGER, `name` TEXT, `uid` INTEGER, `nameSurname` TEXT, `phone` TEXT, `phoneFormatted` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uuid` INTEGER PRIMARY KEY AUTOINCREMENT, `id` INTEGER, `title` TEXT, `modelName` TEXT, `price` INTEGER, `priceFormatted` TEXT, `date` TEXT, `dateFormatted` TEXT, `photo` TEXT, `properties` TEXT, `cityName` TEXT, `townName` TEXT, `categoryId` INTEGER, `name` TEXT)",
         "fields": [
           {
-            "fieldPath": "listOrder",
-            "columnName": "listOrder",
+            "fieldPath": "uuid",
+            "columnName": "uuid",
             "affinity": "INTEGER",
             "notNull": false
           },
@@ -59,6 +59,98 @@
           {
             "fieldPath": "photo",
             "columnName": "photo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "properties",
+            "columnName": "properties",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "location.cityName",
+            "columnName": "cityName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "location.townName",
+            "columnName": "townName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "category.categoryId",
+            "columnName": "categoryId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "category.name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uuid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "AdvertDetails",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `title` TEXT, `modelName` TEXT, `price` INTEGER, `priceFormatted` TEXT, `date` TEXT, `dateFormatted` TEXT, `properties` TEXT, `text` TEXT, `cityName` TEXT, `townName` TEXT, `categoryId` INTEGER, `name` TEXT, `uid` INTEGER, `nameSurname` TEXT, `phone` TEXT, `phoneFormatted` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "advertID",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "modelName",
+            "columnName": "modelName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "priceFormatted",
+            "columnName": "priceFormatted",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dateFormatted",
+            "columnName": "dateFormatted",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "properties",
+            "columnName": "properties",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -130,7 +222,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c3091bdefbc88e777065657e5ddb214c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7f213e572941f1164b71fe0f97198f8b')"
     ]
   }
 }
