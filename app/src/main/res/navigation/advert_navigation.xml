@@ -25,5 +25,22 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailsFragment_to_fullscreenFragment"
+            app:destination="@id/fullscreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullscreenFragment"
+        android:name="com.arabam.android_assignment.views.FullscreenFragment"
+        android:label="fragment_fullscreen"
+        tools:layout="@layout/fragment_fullscreen" >
+        <action
+            android:id="@+id/action_fullscreenFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <argument
+            android:name="imageList"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>
